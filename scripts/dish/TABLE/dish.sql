@@ -1,59 +1,39 @@
-
-
-CREATE TABLE dish.dish
+CREATE TABLE IF NOT EXISTS dish.dish
 (
-    dish_id             bigint       NOT NULL,
-    user_id             bigint       NOT NULL,
-    user_name           varchar(101) NOT NULL,
-    name                varchar(50)  NOT NULL,
-    description                      NULL,
-    photo               varchar(250) NOT NULL,
-    cooking_time        interval     NOT NULL,
-    active_cooking_time interval     NOT NULL,
-    portion_qnt         integer      NOT NULL,
-    proteins            integer      NULL,
-    fats                integer      NULL,
-    carbohydrates       integer      NULL,
-    calories            integer      NULL,
-    cuisine_id          bigint       NULL,
-    spiciness           integer      NOT NULL,
-    complexity_scale    integer      NOT NULL,
-    create_dt                        NOT NULL,
-    edit_dt                          NULL,
-    open_access_dt                   NULL,
-    -- проставлять тэг просмотрено ли блюдо модератором
-    CONSTRAINT PK_1 PRIMARY KEY (dish_id),
-    CONSTRAINT FK_1 FOREIGN KEY (cuisine_id) REFERENCES dish.cuisine (cuisine_id)
+    dish_id             BIGSERIAL                NOT NULL,
+    user_id             BIGINT                   NOT NULL, -- creator . Нужно ли переименовывать на creator_id или так оставлять? с комментами
+    name                VARCHAR(50)              NOT NULL,
+    description         VARCHAR(200)             NOT NULL,
+    photo               VARCHAR(250)             NOT NULL, -- ссылка на фото для preview
+    cooking_time        INTERVAL                 NOT NULL,
+    active_cooking_time INTERVAL                 NOT NULL,
+    portion_qnt         INTEGER                  NOT NULL,
+    proteins            INTEGER                  NULL,     -- на 1 порцию -- TODO кто будет проставлять? как считать?
+    fats                INTEGER                  NULL,     -- на 1 порцию -- TODO кто будет проставлять? как считать?
+    carbohydrates       INTEGER                  NULL,     -- на 1 порцию -- TODO кто будет проставлять? как считать?
+    calories            INTEGER                  NULL,     -- на 1 порцию -- TODO кто будет проставлять? как считать?
+    spiciness           INTEGER                  NOT NULL, -- острота
+    complexity_scale    INTEGER                  NOT NULL, -- сложность приготовления
+    create_dt           TIMESTAMP WITH TIME ZONE NOT NULL,
+    edit_dt             TIMESTAMP WITH TIME ZONE NULL,
+    allowed_dt          TIMESTAMP WITH TIME ZONE NULL,     -- время открытия доступа всем пользователям
+    verify_dt           TIMESTAMP WITH TIME ZONE NULL,
+    verify_user_id      BIGINT                   NULL,
+    CONSTRAINT pk_dish PRIMARY KEY (dish_id)
 );
 
-CREATE INDEX FK_1 ON dish.dish
-    (
-     cuisine_id
-        );
+-- Возможные фильтры на основе данных из таблицы:
+-- - Рецепты по времени приготовления
+-- - Фильтр с диапазоном по калорийности
+-- - Можно устанавливать тэги
+--      Низкоуглеводный
+--      Высокобелковый
+--      Мало жира
+--      Низкокалорийный
+--      Много клетчатки автоматически, на основе данных из таблицы
 
-COMMENT ON TABLE dish.dish IS 'В таблице хранится общая информация о блюде:
-- создатель
-- описание
-- фото для preview
-- общее время приготовления
-- активное время приготовления
-- кол-во порций
-- кбжу
-- принадлежность к кухням: Русская кухня / Французская кухня / Итальянская кухня / Азиатская кухня
-- острота
-сложность приготовления
-- время создания блюда
-- время редактирования блюда
-- время, когда был открыт доступ к рецепту всем пользователям сервиса';
+-- Возможность создавать группы рецептов (например для запуска марафона)
+-- с возможностью открывать доступ только группе лиц
 
-COMMENT ON COLUMN dish.dish.user_id IS 'автор рецепта';
-COMMENT ON COLUMN dish.dish.user_name IS 'Для отображения имени пользователя в рецепте, чтобы не делать лишний join';
-COMMENT ON COLUMN dish.dish.photo IS 'ссылка на фото';
-COMMENT ON COLUMN dish.dish.proteins IS 'на 1 порцию';
-COMMENT ON COLUMN dish.dish.fats IS 'на 1 порцию';
-COMMENT ON COLUMN dish.dish.carbohydrates IS 'на 1 порцию';
-COMMENT ON COLUMN dish.dish.calories IS 'на 1 порцию';
-
-
-
-
+-- создание коммерческого аккаунта с возможностью добавления редакторов, диетологов
+-- поделиться своим аккаунтом с мужем  / специалистом по питанию
