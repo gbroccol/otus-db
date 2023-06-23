@@ -1,19 +1,15 @@
-CREATE TABLE "user"."user"
+CREATE TABLE IF NOT EXISTS "user"."user"
 (
-    user_id      bigint       NOT NULL,
-    first_name   varchar(50)  NOT NULL,
-    last_name    varchar(50)  NULL,
-    middle_name  varchar(50)  NULL,
-    gender       char(1)      NULL,
-    birth_date   date         NULL,
-    email        varchar(50)  NOT NULL,
-    phone_number varchar(20)  NULL,
-    sign_up_dt   timestamp    NOT NULL,
-    login        varchar(50)  NOT NULL,
-    password     varchar(500) NOT NULL,
-    -- последний логин
+    user_id      BIGSERIAL                NOT NULL,
+    first_name   VARCHAR(50)              NOT NULL, -- добавить в индекс, но не индексировать по полю (доп данные)
+    last_name    VARCHAR(50)              NULL,
+    middle_name  VARCHAR(50)              NULL,
+    gender       CHAR(1)                  NULL,     -- F / M
+    birth_date   DATE                     NULL,
+    email        VARCHAR(50)              NOT NULL, --TODO решить NULL / NOT NULL ?
+    phone_number VARCHAR(20)              NOT NULL, --TODO решить NULL / NOT NULL ?
+    sign_up_dt   TIMESTAMP WITH TIME ZONE NOT NULL,
+    login        VARCHAR(50)              NOT NULL,
+    password     VARCHAR(500)             NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (user_id)
 );
-
--- COMMENT ON TABLE "user"."user" IS 'Таблица для хранения информации о пользователях';
-

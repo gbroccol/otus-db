@@ -1,9 +1,11 @@
-CREATE TABLE "user".subscription
+CREATE TABLE IF NOT EXISTS "user".subscription
 (
- subscriber_user_id bigint NOT NULL,
- user_id            bigint NOT NULL,
- CONSTRAINT pk_user PRIMARY KEY ( subscriber_user_id, user_id )
+    user_id            BIGINT NOT NULL, -- добавить в индекс инфу по пользаку для быстрого доступа (для preview)
+    subscriber_user_id BIGINT NOT NULL, -- добавить в индекс инфу по пользаку для быстрого доступа (для preview)
+    CONSTRAINT pk_subscription PRIMARY KEY (user_id, subscriber_user_id)
 );
 
--- COMMENT ON TABLE "user".subscription IS 'Пользователь может подписываться на другие аккаунты и следить за появлениями новых рецептов';
+-- Пользователь может подписываться на другие аккаунты и следить за появлениями новых рецептов
 
+-- Можно посмотреть всех своих подписчиков
+-- Можно посмотреть свои подписки (индекс по полю subscriber_user_id)
