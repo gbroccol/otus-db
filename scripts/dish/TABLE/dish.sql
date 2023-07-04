@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS dish.dish
 (
     dish_id             BIGSERIAL                NOT NULL,
-    user_id             BIGINT                   NOT NULL, -- creator . Нужно ли переименовывать на creator_id или так оставлять? с комментами
+    owner_user_id       BIGINT                   NOT NULL,
     name                VARCHAR(50)              NOT NULL,
     description         VARCHAR(200)             NOT NULL,
     photo               VARCHAR(250)             NOT NULL, -- ссылка на фото для preview
@@ -16,11 +16,12 @@ CREATE TABLE IF NOT EXISTS dish.dish
     complexity_scale    INTEGER                  NOT NULL, -- сложность приготовления
     create_dt           TIMESTAMP WITH TIME ZONE NOT NULL,
     edit_dt             TIMESTAMP WITH TIME ZONE NULL,
-    allowed_dt          TIMESTAMP WITH TIME ZONE NULL,     -- время открытия доступа всем пользователям
     verify_dt           TIMESTAMP WITH TIME ZONE NULL,
     verify_user_id      BIGINT                   NULL,
     CONSTRAINT pk_dish PRIMARY KEY (dish_id)
 );
+
+-- можно добавить visibility_type (личный, публичный, группа)
 
 -- Возможные фильтры на основе данных из таблицы:
 -- - Рецепты по времени приготовления
