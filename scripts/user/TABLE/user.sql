@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS "user"."user"
+(
+    user_id      BIGSERIAL                NOT NULL,
+    first_name   VARCHAR(50)              NOT NULL, -- добавить в индекс, но не индексировать по полю (доп данные)
+    last_name    VARCHAR(50)              NULL,
+    middle_name  VARCHAR(50)              NULL,
+    gender       CHAR(1)                  NULL,     -- F / M
+    birth_date   DATE                     NULL,
+    email        VARCHAR(50)              NOT NULL, --TODO решить NULL / NOT NULL ?
+    phone_number VARCHAR(20)              NOT NULL, --TODO решить NULL / NOT NULL ?
+    sign_up_dt   TIMESTAMP WITH TIME ZONE NOT NULL,
+    login        VARCHAR(50)              NOT NULL,
+    password     VARCHAR(500)             NOT NULL,
+    CONSTRAINT pk_user PRIMARY KEY (user_id)
+);
