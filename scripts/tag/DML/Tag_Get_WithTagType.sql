@@ -1,4 +1,5 @@
 
+-- вывести все теги с группой
 SELECT type.name,
        tag.name
 FROM tag.tag
