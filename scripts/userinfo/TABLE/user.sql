@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "user"."user"
+CREATE TABLE IF NOT EXISTS userinfo.user
 (
     user_id      BIGSERIAL                NOT NULL,
     first_name   VARCHAR(50)              NOT NULL, -- добавить в индекс, но не индексировать по полю (доп данные)
