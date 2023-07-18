@@ -3,4 +3,4 @@
 
 select *
 from userinfo."user" u
-where u.email ~~ '%gmail.com';
+where u.email similar to '%gmail.com';
