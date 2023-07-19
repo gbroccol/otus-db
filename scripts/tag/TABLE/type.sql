@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS tag.type
     is_filled_by_user BOOLEAN     NOT NULL, -- TODO переименовать поле
                                             -- TODO можно устанавливать фильтр пользователям или только админы правят?
     is_filter         BOOLEAN     NOT NULL, -- Тех. настройки (отображить или нет в списке фильтров - поиск рецептов)
-    filter_nmb        INTEGER     NOT NULL, -- Тех. настройки (порядок отображения фильтров - поиск рецептов)
+    sequence          INTEGER     NOT NULL, --TODO unique
+                                            -- Тех. настройки (порядок отображения групп фильтров, например, поиск рецептов или создение рецепта)
     CONSTRAINT pk_type PRIMARY KEY (type_id)
 );
