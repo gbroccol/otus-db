@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS dish.dish
+CREATE TABLE IF NOT EXISTS dish.Dish
 (
     dish_id             BIGSERIAL                NOT NULL,
     owner_user_id       BIGINT                   NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS dish.dish
     edit_dt             TIMESTAMP WITH TIME ZONE NULL,
     verify_dt           TIMESTAMP WITH TIME ZONE NULL,
     verify_user_id      BIGINT                   NULL,
-    CONSTRAINT pk_dish PRIMARY KEY (dish_id)
+    CONSTRAINT PK_Dish PRIMARY KEY (dish_id)
 );
 
 -- можно добавить visibility_type (личный, публичный, группа)

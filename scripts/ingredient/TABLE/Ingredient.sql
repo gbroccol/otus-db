@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ingredient.ingredient
+CREATE TABLE IF NOT EXISTS Ingredient.Ingredient
 (
     ingredient_id BIGSERIAL   NOT NULL,
     name          VARCHAR(50) NOT NULL, -- TODO добавить в индекс, но не индексировать по полю (доп данные)
@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS ingredient.ingredient
     fats          INTEGER     NOT NULL,
     carbohydrates INTEGER     NOT NULL,
     calories      INTEGER     NOT NULL,
-    CONSTRAINT pk_ingredient PRIMARY KEY (ingredient_id)
+    CONSTRAINT PK_Ingredient PRIMARY KEY (ingredient_id)
 );

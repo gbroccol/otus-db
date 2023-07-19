@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS UserInfo.UserStat
+CREATE TABLE IF NOT EXISTS userinfo.UserStat
 (
     user_id             INTEGER NOT NULL,
     dish_count          INTEGER NOT NULL,

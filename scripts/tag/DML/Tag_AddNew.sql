@@ -1,4 +1,3 @@
-
 INSERT INTO tag.tag(tag_id, name)
 VALUES (1, 'завтрак'),
        (2, 'обед'),
@@ -102,7 +101,7 @@ ON CONFLICT (type_id) DO UPDATE
         is_filter     = excluded.is_filter,
         sequence    = excluded.sequence;
 
-INSERT INTO tag.tag_type(type_id, tag_id)
+INSERT INTO tag.TagType(type_id, tag_id)
 VALUES
        -- 1. Приемы пищи
        (1, 1),

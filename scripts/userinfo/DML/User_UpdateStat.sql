@@ -23,7 +23,7 @@ with dish_count as (select d.owner_user_id as user_id,
                         group by f.user_id),
      favorite_dish_count as (select fd.user_id,
                                     count(*) as count
-                             from userinfo.favorite_dish fd
+                             from userinfo.FavoriteDish fd
                              group by fd.user_id)
 update userinfo.userstat us
 set dish_count          = coalesce(dc.count, 0),

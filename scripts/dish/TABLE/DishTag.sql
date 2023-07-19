@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Dish.DishTag
+CREATE TABLE IF NOT EXISTS dish.DishTag
 (
     dish_id         BIGINT    NOT NULL,
     tag_id          BIGINT    NOT NULL,
