@@ -7,3 +7,5 @@ CREATE TABLE IF NOT EXISTS userinfo.FavoriteDish
     CONSTRAINT FK_dish_id FOREIGN KEY (dish_id) REFERENCES dish.Dish (dish_id),
     CONSTRAINT PK_FavoriteDish PRIMARY KEY (user_id, dish_id)
 );
+
+create index IX_FavoriteDish_DishId on userinfo.FavoriteDish(dish_id);

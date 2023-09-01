@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS userinfo.User
 (
     user_id      BIGSERIAL                NOT NULL,
-    first_name   VARCHAR(50)              NOT NULL, -- добавить в индекс, но не индексировать по полю (доп данные)
+    first_name   VARCHAR(50)              NOT NULL,
     last_name    VARCHAR(50)              NULL,
     middle_name  VARCHAR(50)              NULL,
     gender       CHAR(1)                  NULL,     -- F / M
@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS userinfo.User
     password     VARCHAR(500)             NOT NULL,
     CONSTRAINT PK_User PRIMARY KEY (user_id)
 );
+
+create index IX_User_UserId on userinfo.User (user_id) include (first_name);

@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS dish.Dish
     CONSTRAINT PK_Dish PRIMARY KEY (dish_id)
 );
 
+create index IX_Dish_OwnerUserId on dish.dish(owner_user_id);
+
 -- можно добавить visibility_type (личный, публичный, группа)
 
 -- Возможные фильтры на основе данных из таблицы:

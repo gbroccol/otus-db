@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS userinfo.Follower
     CONSTRAINT PK_Follower PRIMARY KEY (user_id, follower_user_id)
 );
 
+create index IX_Follower_FollowerUserId on userinfo.Follower(follower_user_id);
+
 -- Пользователь может подписываться на другие аккаунты и следить за появлениями новых рецептов
 -- Можно посмотреть всех своих подписчиков
 -- Можно посмотреть свои подписки
